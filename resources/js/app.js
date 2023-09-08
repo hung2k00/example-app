@@ -1,7 +1,6 @@
 // app.js
 
 require('./bootstrap');
-
 import Vue from 'vue';
 import { createApp } from 'vue';
 import CategoryList from './components/CategoryListComponent.vue';

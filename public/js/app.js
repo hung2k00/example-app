@@ -20935,7 +20935,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ntable {\n    border-collapse: collapse;\n}\ntable,\nth,\ntd {\n    border: 1px solid;\n}\n.table-list {\n    overflow-y: auto;\n    height: 350px;\n}\nthead th {\n    position: sticky;\n    top: -20px;\n    background-color: #f2f2f2;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntable {\r\n    border-collapse: collapse;\n}\ntable,\r\nth,\r\ntd {\r\n    border: 1px solid;\n}\n.table-list {\r\n    overflow-y: auto;\r\n    height: 350px;\n}\nthead th {\r\n    position: sticky;\r\n    top: -20px;\r\n    background-color: #f2f2f2;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

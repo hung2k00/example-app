@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HotelController;
 use App\Models\Category;
@@ -35,3 +36,4 @@ Route::delete('/hotel/{id}', [HotelController::class, 'destroy']);
 Route::get('/hotel/edit/{id}', [HotelController::class, 'edit']);
 Route::post('/hotel/update/{id}', [HotelController::class, 'update']);
 
+Route::post('/login', [AccountController::class, 'login']);

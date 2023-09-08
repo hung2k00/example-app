@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'loyal_customer',
         'passwords' => 'users',
     ],
 
@@ -40,8 +40,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-    ],
 
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
+//đây là đoạn mình thêm vào dùng để xác thực
+        'loyal_customer' => [
+            'driver' => 'session',
+            'provider' => 'loyal_customers',
+        ],
+        'loyal_customer-api' => [
+            'driver' => 'token',
+            'provider' => 'loyal_customers',
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -62,13 +75,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+//truy suất dữ liệu cho bảng
+        'loyal_customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\LoyalCustomer::class,
+        ],
     ],
 
     /*
@@ -88,7 +101,7 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
+            'provider' => 'accounts',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
