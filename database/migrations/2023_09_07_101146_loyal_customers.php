@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('loyal_customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('gender');
-            $table->date('birth_date');
-            $table->string('address');
+            $table->string('name')->nullable();
+            $table->string('gender')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('password_change_required')->default(true);
+            $table->boolean('detail_change')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

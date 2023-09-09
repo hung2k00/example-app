@@ -18,22 +18,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function () {
-    //Layout
-    Route::get('/', [LayoutController::class, 'index'])->name('dashboard');
+    Route::get('/change_password', [AccountController::class, 'change_password'])->name('change_password');
+    Route::post('/change_password', [AccountController::class, 'updatePass'])->name('change_password');
+    Route::middleware(['password.change'])->group(function () {
+        Route::get('/user_detail',[AccountController::class, 'showDetail'])->name('user_detail');
+        Route::post('/user_detail',[AccountController::class, 'userDetail']);
+        Route::middleware(['user.detail'])->group(function () {
+            //Layout
+            Route::get('/', [LayoutController::class, 'index'])->name('dashboard');
 
-    //Category
-    Route::get('/category', [CategoryController::class, 'viewList'])->name('home');
-    Route::get('/category/create', [CategoryController::class, 'viewCreate'])->name('viewCreate');
-    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category_edit');
+            //Category
+            Route::get('/category', [CategoryController::class, 'viewList'])->name('home');
+            Route::get('/category/create', [CategoryController::class, 'viewCreate'])->name('viewCreate');
+            Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category_edit');
 
-    //Hotel
-    Route::get('/hotel', [HotelController::class, 'viewHotel'])->name('hotel');
-    Route::get('/hotel/create', [HotelController::class, 'viewCreate'])->name('create_hotel');
-    Route::get('/hotel/edit/{id}', [HotelController::class, 'edit'])->name('hotel_edit');
-    Route::get('/hotel/export', [HotelController::class, 'export']);
-    Route::get('/hotel/export-hotels/{category}', [HotelController::class, 'exportHotels'])->name('export.hotels');
-    Route::post('/hotel/importExcel', [HotelController::class, 'importExcelCSV']);
-    Route::get('/hotel/excel-csv-file', [HotelController::class, 'indexExcelCSV']);
+            //Hotel
+            Route::get('/hotel', [HotelController::class, 'viewHotel'])->name('hotel');
+            Route::get('/hotel/create', [HotelController::class, 'viewCreate'])->name('create_hotel');
+            Route::get('/hotel/edit/{id}', [HotelController::class, 'edit'])->name('hotel_edit');
+            Route::get('/hotel/export', [HotelController::class, 'export']);
+            Route::get('/hotel/export-hotels/{category}', [HotelController::class, 'exportHotels'])->name('export.hotels');
+            Route::post('/hotel/importExcel', [HotelController::class, 'importExcelCSV']);
+            Route::get('/hotel/excel-csv-file', [HotelController::class, 'indexExcelCSV']);
+        });
+    });
+
 });
 
 // Account
