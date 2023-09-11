@@ -1,7 +1,5 @@
-@include('main.header')
-<div class="content">
-    @yield('content')
-</div>
+@extends('main.header')
+@section('content')
 <div class="bg-gray-200 flex items-center justify-center full-login">
     <div class="max-w-md w-full space-y-8 bg-white p-5 rounded-3xl shadow-lg">
         <div>
@@ -40,5 +38,4 @@
         </form>
     </div>
 </div>
-<script src="{{ mix('js/app.js') }}"></script>
-
+@endsection

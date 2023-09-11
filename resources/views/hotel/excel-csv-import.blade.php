@@ -1,7 +1,5 @@
-@include('main.header')
-<div class="content">
-    @yield('content')
-</div>
+@extends('main.header')
+@section('content')
 <div id="app">
     <div class="container mt-5">
 
@@ -57,6 +55,7 @@
 
     </div>
 </div>
+@endsection
 
 
 

@@ -65,3 +65,88 @@
 .full-login {
     height: 93vh;
 }
+label {
+    margin-top: 8px;
+    color: #493527;
+}
+input[type="text"] {
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #33ffff;
+    border-radius: 10px;
+}
+button[type="submit"] {
+    background-color: #00ffff;
+    border: #00ffff;
+    border-radius: 10px;
+}
+p {
+    color: rgba(22, 210, 216, 0.856);
+    font-size: 1rem;
+}
+.all_create {
+    background-color: bisque;
+}
+button:hover {
+    background-color: rgba(22, 210, 216, 0.856);
+}
+button p:hover {
+    color: rgba(172, 46, 46, 0.938);
+}
+input[type="text"] {
+    padding: 5px;
+    width: 100%;
+}
+.all_create {
+    height: 94vh;
+}
+table {
+    border-collapse: collapse;
+}
+table,
+th,
+td {
+    border: 1px solid;
+    padding: 5px;
+}
+button {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+}
+@media screen and (max-height: 967px) {
+    .all_create {
+        height: 93vh;
+    }
+}
+
+button[type="submit"] {
+    background-color: #00ffff;
+    border: #00ffff;
+    color: #ddb192;
+    border-radius: 10px;
+}
+button[type="text"]:hover {
+    background-color: #ddb192;
+    color: brown;
+}
+option {
+    border: 1px solid #33ffff;
+}
+table {
+    border-collapse: collapse;
+}
+table,
+th,
+td {
+    border: 1px solid;
+}
+.table-list {
+    overflow-y: auto;
+    height: 350px;
+}
+thead th {
+    position: sticky;
+    top: -20px;
+    background-color: #f2f2f2;
+}

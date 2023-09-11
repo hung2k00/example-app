@@ -1,8 +1,8 @@
-@include('main.header')
-    <div class="content">
-        @yield('content')
+@extends('main.header')
+@section('content')
+    <div id="content">
+        <div id="app">
+            <category-create></category-create>
+        </div>
     </div>
-    <div id="app">
-        <category-create></category-create>
-    </div>
-    <script src="{{ mix('js/app.js') }}"></script>
+@endsection

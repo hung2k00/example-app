@@ -1,9 +1,6 @@
-@include('main.header')
-    <div class="content">
-        @yield('content')
-    </div>
+@extends('main.header')
+@section('content')
     <div id="app">
         <hotel-edit :hotels="{{ $hotels }}" :categories="{{ $categories }}"></hotel-edit>
     </div>
-    <script src="{{ mix('js/app.js') }}"></script>
-
+@endsection

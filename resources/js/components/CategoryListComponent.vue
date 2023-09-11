@@ -106,27 +106,4 @@ export default {
     },
 };
 </script>
-<style>
-.all_create {
-    height: 94vh;
-}
-table {
-    border-collapse: collapse;
-}
-table,
-th,
-td {
-    border: 1px solid;
-    padding: 5px;
-}
-button {
-    border: 1px solid black;
-    padding: 5px;
-    border-radius: 10px;
-}
-@media screen and (max-height: 967px) {
-    .all_create {
-        height: 93vh;
-    }
-}
-</style>
+

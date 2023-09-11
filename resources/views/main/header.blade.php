@@ -51,11 +51,9 @@
             </div>
         @endif
     </header>
-    <script>
-        function logout() {
-            // Xóa token khỏi Local Storage
-            localStorage.removeItem("token");
-        }
-    </script>
+    <div id="content">
+        @yield('content')
+    </div>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

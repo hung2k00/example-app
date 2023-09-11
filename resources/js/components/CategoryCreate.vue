@@ -96,7 +96,7 @@ export default {
                             duration: 3000,
                             gravity: "top",
                             backgroundColor: "red",
-                            stopOnFocus: true, 
+                            stopOnFocus: true,
                         }).showToast();
                     }
                 });
@@ -107,36 +107,4 @@ export default {
     },
 };
 </script>
-<style>
-label {
-    margin-top: 8px;
-    color: #493527;
-}
-input[type="text"] {
-    margin-top: 5px;
-    padding: 5px;
-    border: 1px solid #33ffff;
-    border-radius: 10px;
-}
-button[type="submit"] {
-    background-color: #00ffff;
-    border: #00ffff;
-}
-p {
-    color: rgba(22, 210, 216, 0.856);
-    font-size: 1rem;
-}
-.all_create {
-    background-color: bisque;
-}
-button:hover {
-    background-color: rgba(22, 210, 216, 0.856);
-}
-button p:hover {
-    color: rgba(172, 46, 46, 0.938);
-}
-input[type="text"] {
-    padding: 5px;
-    width: 100%;
-}
-</style>
+

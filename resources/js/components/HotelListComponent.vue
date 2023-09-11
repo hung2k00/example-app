@@ -183,22 +183,4 @@ export default {
     },
 };
 </script>
-<style>
-table {
-    border-collapse: collapse;
-}
-table,
-th,
-td {
-    border: 1px solid;
-}
-.table-list {
-    overflow-y: auto;
-    height: 350px;
-}
-thead th {
-    position: sticky;
-    top: -20px;
-    background-color: #f2f2f2;
-}
-</style>
+

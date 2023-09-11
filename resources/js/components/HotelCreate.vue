@@ -194,7 +194,7 @@ export default {
                             duration: 3000,
                             gravity: "top",
                             backgroundColor: "red",
-                            stopOnFocus: true, 
+                            stopOnFocus: true,
                         }).showToast();
                     }
                 });
@@ -205,26 +205,4 @@ export default {
     },
 };
 </script>
-<style>
-label {
-    margin-top: 8px;
-    color: #493527;
-}
-input[type="text"] {
-    margin-top: 5px;
-    padding: 5px;
-    border: 1px solid #33ffff;
-}
-button[type="submit"] {
-    background-color: #00ffff;
-    border: #00ffff;
-    color: #ddb192;
-}
-button[type="text"]:hover {
-    background-color: #ddb192;
-    color: brown;
-}
-option {
-    border: 1px solid #33ffff;
-}
-</style>
+
