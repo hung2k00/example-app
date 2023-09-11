@@ -6,5 +6,4 @@
         <hotel-edit :hotels="{{ $hotels }}" :categories="{{ $categories }}"></hotel-edit>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
-</body>
-</html>
+

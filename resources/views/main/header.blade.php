@@ -40,12 +40,12 @@
             </div>
         @else
             <div class="py-4">
-                <a href="{{ url('/login') }}" id="showPopup">
+                <a href="{{ route('login') }}" id="showPopup">
                     <p class="header_p text-xl text-green-200">Login</p>
                 </a>
             </div>
             <div class="py-4">
-                <a href="{{ url('/register') }}">
+                <a href="{{ route('register') }}">
                     <p class="header_p text-xl text-green-200">Register</p>
                 </a>
             </div>
@@ -57,3 +57,5 @@
             localStorage.removeItem("token");
         }
     </script>
+</body>
+</html>

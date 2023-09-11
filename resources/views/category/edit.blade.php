@@ -6,5 +6,3 @@
         <category-edit :categories="{{ $categories }}"></category-edit>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
-</body>
-</html>

@@ -58,8 +58,6 @@
     </div>
 </div>
 
-</body>
 
-</html>
 
 
