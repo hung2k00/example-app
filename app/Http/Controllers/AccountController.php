@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\JustTesting;
+use App\Jobs\SendRegistrationEmail;
 
 class AccountController extends Controller
 {
@@ -55,7 +56,7 @@ class AccountController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($randomPassword);
-        Mail::send(new JustTesting($user->email, $randomPassword, $user->name));
+        SendRegistrationEmail::dispatch($user->email, $randomPassword, $user->name);
         $user->save();
         return redirect('/login')->with('success', 'Đăng ký thành công! Vui lòng kiểm tra email để lấy mật khẩu.');
 
