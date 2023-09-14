@@ -38,6 +38,10 @@
                     <p class="header_p text-xl text-green-200">Logout</p>
                 </a>
             </div>
+            <div class="py-4">
+                <a href="{{ route('change_pass') }}">
+                    <p class="header_p text-xl text-green-200">Change Password </p></a>
+            </div>
         @else
             <div class="py-4">
                 <a href="{{ route('login') }}" id="showPopup">

@@ -19,7 +19,6 @@ class CheckPasswordChangeRequired
         if (auth()->check() && auth()->user()->password_change_required) {
             return redirect('/change_password');
         }
-
         return $next($request);
     }
 }

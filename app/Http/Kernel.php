@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Jobs\DeleteInactiveAccounts;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -14,7 +16,7 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
+            // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
@@ -66,4 +68,5 @@ class Kernel extends HttpKernel
         'password.change' => \App\Http\Middleware\CheckPasswordChangeRequired::class,
         'user.detail' => \App\Http\Middleware\CheckDetailChangeRequired::class,
     ];
+
 }

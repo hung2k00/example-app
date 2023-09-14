@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -24,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('password_change_required')->default(true);
             $table->boolean('detail_change')->default(true);
+            $table->timestamp('time_forgot')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

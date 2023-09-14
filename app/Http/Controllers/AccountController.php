@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendForgotPass;
 use App\Models\LoyalCustomer;
+use App\Rules\CheckPass;
 use App\Rules\UniqueEmail;
+use App\Rules\CheckEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -102,6 +106,37 @@ class AccountController extends Controller
         $detail->detail_change = false;
         $detail->save();
         auth()->login($detail);
+        return redirect('/');
+    }
+    public function forgotPassword()
+    {
+        return view('account.forgotPassword');
+    }
+    public function updateForgotPass(Request $request) {
+        $request->validate([
+            'email' => ['required', 'max:255', 'email', new CheckEmail],
+        ]);
+        $user = LoyalCustomer::where('email', $request->input('email'))->first();
+        $randomPassword = Str::random(10);
+        $user->password = bcrypt($randomPassword);
+        $user->password_change_required = true;
+        $user->time_forgot = now();
+        SendForgotPass::dispatch($user->email, $randomPassword, $user->name);
+        $user->save();
+        return redirect('/login');
+    }
+    public function viewChange() {
+        $user = auth()->user();
+        return view('account.change', compact('user'));
+    }
+    public function updateChange(Request $request) {
+        $request->validate([
+            'old_password' => ['required','min:8', new CheckPass],
+            'new_password' => ['required','min:8'],
+        ]);
+        $user = auth()->user();
+        $user->password = bcrypt($request->input('new_password'));
+        $user->save();
         return redirect('/');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\CheckAndDeleteExpiredAccounts;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('delete:expired-accounts')->everyTwoHours();
+        $schedule->command('delete:account_forgot_password')->everyTwoMinutes();
     }
 
     /**
@@ -29,4 +31,9 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+    protected $commands = [
+        // ...
+        \App\Console\Commands\DeleteExpiredAccounts::class,
+        \App\Console\Commands\CheckForgotPass::class,
+    ];
 }

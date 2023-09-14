@@ -42,7 +42,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/hotel/excel-csv-file', [HotelController::class, 'indexExcelCSV']);
         });
     });
-
 });
 
 // Account
@@ -51,3 +50,7 @@ Route::post('/login', [AccountController::class, 'login']);
 Route::get('/logout', [AccountController::class, 'logout'])->name('account.logout');
 Route::get('/register', [AccountController::class, 'indexRegister'])->name('register');
 Route::post('/register', [AccountController::class, 'register']);
+Route::get('/forgot/password', [AccountController::class, 'forgotPassword'])->name('forgot_password');
+Route::post('/forgot/password', [AccountController::class, 'updateForgotPass'])->name('forgot_password');
+Route::get('/dashboard/change_pass', [AccountController::class, 'viewChange'])->name('change_pass');
+Route::post('/dashboard/change_pass', [AccountController::class, 'updateChange']);
