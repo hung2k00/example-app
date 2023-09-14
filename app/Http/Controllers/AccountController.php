@@ -23,15 +23,23 @@ class AccountController extends Controller
     }
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|max:100',
-            'password' => 'required|min:8',
-        ]);
+        if (session('login_attempts')) {
+            $request->validate([
+                'email' => 'required|email|max:100',
+                'password' => 'required|min:8',
+                'captcha' => 'required|captcha',
+            ]);
+        } else {
+            $request->validate([
+                'email' => 'required|email|max:100',
+                'password' => 'required|min:8',
+            ]);
+        }
         $arr = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ];
-
+        $loginAttempts = session('login_attempts', 0);
         if (Auth::attempt($arr)) {
             if (auth()->user()->password_change_required) {
                 return redirect('/change_password');
@@ -39,9 +47,17 @@ class AccountController extends Controller
             else if (auth()->user()->detail_change) {
                 return redirect('/user_detail');
             }
+            session(['login_attempts' => 0]);
             return redirect()->route('dashboard');
         } else {
-            return back()->withErrors(['email' => 'Thông tin đăng nhập không chính xác.'])->withInput();
+            $loginAttempts++;
+            session(['login_attempts' => $loginAttempts]);
+
+            if ($loginAttempts >= 3) {
+                return back()->withErrors(['email' => 'Thông tin đăng nhập không chính xác.'])->withInput()->withErrors(['captcha' => 'Xác thực CAPTCHA không chính xác.']);
+            } else {
+                return back()->withErrors(['email' => 'Thông tin đăng nhập không chính xác.'])->withInput();
+            }
         }
     }
     public function indexRegister()
