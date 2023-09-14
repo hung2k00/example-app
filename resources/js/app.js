@@ -19,3 +19,4 @@ app.component('hotel-list', HotelList);
 app.component('hotel-create', HotelCreate);
 app.component('hotel-edit', HotelEdit);
 app.mount('#app');
+

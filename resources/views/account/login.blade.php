@@ -28,16 +28,19 @@
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
-                    @if (session('login_attempts'))
-                        <div class="mt-3">
-                            <label for="captcha" class="sr-only">Captcha</label>
-                            {!! captcha_img() !!}
-                            <input type="text" id="captcha" name="captcha" class="form-control"
-                                placeholder="Enter Captcha">
-                            @error('captcha')
-                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                            @enderror
+                    @if (session('login_attempts') >= 3)
+                        <!-- Display CAPTCHA image -->
+                        <div class="mt-3 flex gap-2">
+                            <img src="{{ $captcha['img'] }}" alt="CAPTCHA" id="captcha-image">
+                            <i class="fa-solid fa-arrows-rotate fa-xl pt-3 cursor-pointer" id="refresh-captcha"></i>
                         </div>
+
+                        <div class="form-group">
+                            <input id="captcha" type="text" class="form-control" name="captcha">
+                        </div>
+                        @error('captcha')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     @endif
                 </div>
 

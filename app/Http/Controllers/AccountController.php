@@ -8,22 +8,23 @@ use App\Rules\CheckPass;
 use App\Rules\UniqueEmail;
 use App\Rules\CheckEmail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use App\Mail\JustTesting;
 use App\Jobs\SendRegistrationEmail;
+use Mews\Captcha\Facades\Captcha;
 
 class AccountController extends Controller
 {
     public function index()
     {
-        return view('account.login');
+        $captcha = Captcha::create('default', true);
+        return view('account.login', compact('captcha'));
     }
     public function login(Request $request)
     {
-        if (session('login_attempts')) {
+        $loginAttempts = session('login_attempts', 0);
+
+        if (session('login_attempts') >= 3) {
             $request->validate([
                 'email' => 'required|email|max:100',
                 'password' => 'required|min:8',
@@ -35,16 +36,16 @@ class AccountController extends Controller
                 'password' => 'required|min:8',
             ]);
         }
+
         $arr = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ];
-        $loginAttempts = session('login_attempts', 0);
+
         if (Auth::attempt($arr)) {
             if (auth()->user()->password_change_required) {
                 return redirect('/change_password');
-            }
-            else if (auth()->user()->detail_change) {
+            } else if (auth()->user()->detail_change) {
                 return redirect('/user_detail');
             }
             session(['login_attempts' => 0]);
@@ -81,11 +82,16 @@ class AccountController extends Controller
         return redirect('/login')->with('success', 'Đăng ký thành công! Vui lòng kiểm tra email để lấy mật khẩu.');
 
     }
-    public function logout()
+
+    public function logout(Request $request)
     {
-        Auth::logout();
-        return redirect('/login');
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->flush();
+        return redirect('/');
     }
+
     public function change_password()
     {
         $user = auth()->user();
@@ -109,10 +115,11 @@ class AccountController extends Controller
         $user = auth()->user();
         return view('account.user_detail', compact('user'));
     }
-    public function userDetail(Request $request) {
+    public function userDetail(Request $request)
+    {
         $request->validate([
             'gender' => 'required',
-            'birth_date' =>'required',
+            'birth_date' => 'required',
             'address' => 'required|string|max:255',
         ]);
         $detail = auth()->user();
@@ -128,7 +135,8 @@ class AccountController extends Controller
     {
         return view('account.forgotPassword');
     }
-    public function updateForgotPass(Request $request) {
+    public function updateForgotPass(Request $request)
+    {
         $request->validate([
             'email' => ['required', 'max:255', 'email', new CheckEmail],
         ]);
@@ -141,14 +149,16 @@ class AccountController extends Controller
         $user->save();
         return redirect('/login');
     }
-    public function viewChange() {
+    public function viewChange()
+    {
         $user = auth()->user();
         return view('account.change', compact('user'));
     }
-    public function updateChange(Request $request) {
+    public function updateChange(Request $request)
+    {
         $request->validate([
-            'old_password' => ['required','min:8', new CheckPass],
-            'new_password' => ['required','min:8'],
+            'old_password' => ['required', 'min:8', new CheckPass],
+            'new_password' => ['required', 'min:8'],
         ]);
         $user = auth()->user();
         $user->password = bcrypt($request->input('new_password'));
