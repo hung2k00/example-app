@@ -165,4 +165,8 @@ class AccountController extends Controller
         $user->save();
         return redirect('/');
     }
+    public function refreshCaptcha()
+    {
+        return response()->json(['captcha' => captcha_img()]);
+    }
 }

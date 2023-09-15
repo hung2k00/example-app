@@ -30,13 +30,13 @@
                     </div>
                     @if (session('login_attempts') >= 3)
                         <!-- Display CAPTCHA image -->
-                        <div class="mt-3 flex gap-2">
-                            <img src="{{ $captcha['img'] }}" alt="CAPTCHA" id="captcha-image">
-                            <i class="fa-solid fa-arrows-rotate fa-xl pt-3 cursor-pointer" id="refresh-captcha"></i>
-                        </div>
+                        <div class="captcha flex gap-2 mt-3">
+                            <span>{!! captcha_img() !!}</span>
+                            <button type="button" class="btn btn-success refresh-cpatcha"><i class="fa fa-refresh"></i></button>
+                          </div>
 
                         <div class="form-group">
-                            <input id="captcha" type="text" class="form-control" name="captcha">
+                            <input id="captcha" type="text" class="form-control" name="captcha" placeholder="Enter Captcha">
                         </div>
                         @error('captcha')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>

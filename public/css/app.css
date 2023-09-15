@@ -825,9 +825,6 @@ video {
 .pt-4 {
   padding-top: 1rem;
 }
-.pt-3 {
-  padding-top: 0.75rem;
-}
 .text-center {
   text-align: center;
 }
@@ -904,6 +901,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .placeholder-gray-500::-moz-placeholder {
   --tw-placeholder-opacity: 1;

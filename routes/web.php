@@ -54,3 +54,4 @@ Route::get('/forgot/password', [AccountController::class, 'forgotPassword'])->na
 Route::post('/forgot/password', [AccountController::class, 'updateForgotPass'])->name('forgot_password');
 Route::get('/dashboard/change_pass', [AccountController::class, 'viewChange'])->name('change_pass');
 Route::post('/dashboard/change_pass', [AccountController::class, 'updateChange']);
+Route::get('/refresh-captcha', [AccountController::class, 'refreshCaptcha']);

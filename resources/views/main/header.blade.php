@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <title>Demo Laravel mix Vue</title>
 </head>
 
@@ -58,6 +59,18 @@
         @yield('content')
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(".refresh-cpatcha").click(function() {
+            console.log('hello');
+          $.ajax({
+            type: 'GET',
+            url: "{{url('refresh-captcha')}}",
+            success: function(data) {
+              $(".captcha span").html(data.captcha);
+            }
+          });
+        });
+    </script>
 </body>
 </html>
