@@ -29,7 +29,11 @@ class AccountController extends Controller
                 'email' => 'required|email|max:100',
                 'password' => 'required|min:8',
                 'captcha' => 'required|captcha',
-            ]);
+            ],
+            [
+                'captcha.captcha' => 'Nhập sai captcha',
+            ]
+        );
         } else {
             $request->validate([
                 'email' => 'required|email|max:100',
